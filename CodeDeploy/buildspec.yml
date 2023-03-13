@@ -8,9 +8,10 @@ env:
 phases:
   install:
     commands:
-      - echo "Check aws and git version"
+      - echo "Check aws, git and docker version"
       - aws --version
       - git --version
+      - docker --version
   pre_build:
     commands:
       - echo "login and get COMMIT_ID"
