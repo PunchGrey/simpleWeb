@@ -3,5 +3,4 @@
 *.pyc
 ._*
 .nfs.*
-go.mod
 go.work
