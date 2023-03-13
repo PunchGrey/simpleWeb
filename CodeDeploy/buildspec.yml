@@ -15,16 +15,16 @@ phases:
   pre_build:
     commands:
       - echo "login and get COMMIT_ID"
-      - aws ecr get-login-password --region {$AWS_ACCOUNT_ID} | docker login --username AWS --password-stdin {$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_ACCOUNT_ID}.amazonaws.com
+      - aws ecr get-login-password --region $AWS_ACCOUNT_ID | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_ACCOUNT_ID.amazonaws.com
       - COMMIT_ID=$(git rev-parse --short HEAD)
   build:
     commands:
       - echo "build docker image"
       - docker build -t simpleweb .
-      - docker tag simpleweb:latest {$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/simpleweb:latest
-      - docker tag simpleweb:latest {$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/simpleweb:{$COMMIT_ID}
+      - docker tag simpleweb:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/simpleweb:latest
+      - docker tag simpleweb:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/simpleweb:$COMMIT_ID
   post_build:
     commands:
       - echo "push docker image"
-      - docker push {$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/simpleweb:latest
-      - docker push {$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/simpleweb:{$COMMIT_ID}
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/simpleweb:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/simpleweb:$COMMIT_ID
