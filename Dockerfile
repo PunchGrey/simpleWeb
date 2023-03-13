@@ -1,5 +1,6 @@
 # builder image
-FROM golang:1.19-alpine as builder
+#FROM golang:1.19-alpine as builder
+FROM 010079335438.dkr.ecr.eu-west-1.amazonaws.com/golang:1.19-alpine as builder
 
 ENV CGO_ENABLED 0
 ENV GO111MODULE on
