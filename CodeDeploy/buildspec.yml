@@ -28,3 +28,7 @@ phases:
       - echo "push docker image"
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/simpleweb:latest
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/simpleweb:$COMMIT_ID
+      - echo "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/simpleweb:$COMMIT_ID" > artifact.txt
+artifacts:
+  files:
+    - artifact.txt
