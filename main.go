@@ -38,11 +38,11 @@ func getHost() string {
 }
 
 func health(w http.ResponseWriter, req *http.Request) {
-	w.Write([]byte(fmt.Sprintf("version 3 OK %s", getHost())))
+	w.Write([]byte(fmt.Sprintf("version 4 OK %s", getHost())))
 }
 
 func app(w http.ResponseWriter, req *http.Request) {
-	w.Write([]byte("APPLICATION version 3" + getHost()))
+	w.Write([]byte("APPLICATION version 4" + getHost()))
 }
 
 const templateStr = `
